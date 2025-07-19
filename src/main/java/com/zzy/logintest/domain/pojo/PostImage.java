@@ -1,4 +1,4 @@
-package com.zzy.posts.domain.pojo;
+package com.zzy.logintest.domain.pojo;
 
 import lombok.Data;
 

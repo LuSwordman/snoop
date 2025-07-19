@@ -1,7 +1,6 @@
-package com.zzy.posts.domain.dto;
+package com.zzy.logintest.domain.dto;
 
 import lombok.Data;
-import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class PostDto {

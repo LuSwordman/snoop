@@ -6,14 +6,14 @@ import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
-    @Insert("INSERT INTO users (username, email, password) " +
+    @Insert("INSERT INTO user (username, email, password) " +
             "VALUES (#{username}, #{email}, #{password})")
     int insert(User user);
 
-    @Select("SELECT * FROM users WHERE email = #{email}")
+    @Select("SELECT * FROM user WHERE email = #{email}")
     User findByEmail(String email);
 
-    @Update("UPDATE users SET password = #{password} WHERE email = #{email}")
+    @Update("UPDATE user SET password = #{password} WHERE email = #{email}")
     int updatePassword(@Param("email") String email, @Param("password") String password);
 
     /**

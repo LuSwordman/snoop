@@ -1,17 +1,17 @@
-package com.zzy.posts.service;
+package com.zzy.logintest.service;
 
 
 
-import com.zzy.posts.domain.dto.PostDto;
-import com.zzy.posts.domain.pojo.Post;
-import com.zzy.posts.domain.vo.PostVo;
+import com.zzy.logintest.domain.dto.PostDto;
+import com.zzy.logintest.domain.pojo.Post;
+import com.zzy.logintest.domain.vo.PostVo;
 import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface PostService {
     ResponseEntity<Post> createPost(PostDto postDro);
 
-    ResponseEntity<Post> getPost(Long id);
+    ResponseEntity<PostVo> getPost(Long id);
 
     ResponseEntity<List<PostVo>> getPosts(int page, int size);
 
@@ -19,5 +19,7 @@ public interface PostService {
 
     ResponseEntity<Void> deletePost(Long id);
 
-    ResponseEntity<Void> likePost(Long id);
+    ResponseEntity<Void> updateLikePost(Long id, int addCount);
+
+    int updateCommentPost(Long postId,Integer addCount);
 }

@@ -1,6 +1,7 @@
 package com.zzy.logintest.service.impl;
 
 import com.zzy.logintest.domain.dto.RegisterRequest;
+
 import com.zzy.logintest.domain.pojo.User;
 import com.zzy.logintest.domain.vo.ApiResponse;
 
@@ -39,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
         //创建新用户
         User user = new User();
-        user.setUsername(request.getUsername());
+        user.setUsername(request.getUserName());
         user.setPassword(request.getPassword());
         user.setEmail(request.getEmail());
 

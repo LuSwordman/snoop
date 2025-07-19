@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zzy.logintest.mapper.PostImagesMapper">
+
+  <!--
+    //前提要保证每个id的最高优先级唯一
+    根据多个 post_id，查询每个 post_id 下 sort_order 最大的图片
+    参数: List<Long> postIds
+    返回: List<PostImage>
+  -->
+  <select id="selectTopImagesByPostIds" resultType="com.zzy.logintest.domain.pojo.PostImage" parameterType="java.util.Set">
+    SELECT p.*
+    FROM post_image p
+    INNER JOIN (
+      SELECT post_id, MAX(sort_order) AS max_sort
+      FROM post_image
+      WHERE post_id IN
+      <foreach collection="postIds" item="id" open="(" separator="," close=")">
+        #{id}
+      </foreach>
+      GROUP BY post_id
+    ) m ON p.post_id = m.post_id AND p.sort_order = m.max_sort
+  </select>
+
+</mapper>

@@ -1,9 +1,9 @@
-package com.zzy.posts.mapper;
+package com.zzy.logintest.mapper;
 
 
 
-import com.zzy.posts.domain.dto.PostDto;
-import com.zzy.posts.domain.pojo.Post;
+import com.zzy.logintest.domain.dto.PostDto;
+import com.zzy.logintest.domain.pojo.Post;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -29,6 +29,9 @@ public interface PostMapper {
     @Update("UPDATE posts SET view_count = view_count + 1 WHERE id = #{id}")
     int incrementViewCount(Long id);
 
-    @Update("UPDATE posts SET like_count = like_count + 1 WHERE id = #{id}")
-    int incrementLikeCount(Long id);
+    @Update("UPDATE posts SET like_count = like_count + #{addCount} WHERE id = #{id}")
+    int updateLikeCount(Long id,int addCount);
+
+    @Update("UPDATE posts SET comment_count = comment_count + #{addCount} WHERE id = #{postId}")
+    int updateCommentCount(Long postId, Integer addCount);
 }

@@ -1,9 +1,12 @@
-package com.zzy.posts.domain.pojo;
+package com.zzy.logintest.domain.vo;
 
+import com.zzy.logintest.domain.pojo.PostImage;
+import com.zzy.logintest.domain.pojo.PostVideo;
 import lombok.Data;
+import java.util.List;
 
 @Data
-public class Post {
+public class PostVo {
     private Long id;                    // 帖子ID
     private Long userId;                // 发布用户ID
     private String title;               // 帖子标题
@@ -14,4 +17,12 @@ public class Post {
     private String createdAt;           // 创建时间
     private String updatedAt;           // 更新时间
     private Integer status;             // 状态：1-正常，0-删除
+    //用户名+头像
+    private String userName;
+    private String userAvatar;
+    
+    // 关联的图片列表
+    private List<PostImage> images;
+    // 关联的视频列表
+    private PostVideo video;
 }

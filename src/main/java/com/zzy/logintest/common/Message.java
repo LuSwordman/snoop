@@ -1,4 +1,4 @@
-package com.zzy.posts.common;
+package com.zzy.logintest.common;
 
 public class Message {
     public static final String POST_NOT_FOUND = "帖子不存在";

@@ -1,8 +1,10 @@
-package com.zzy.posts.domain.pojo;
+package com.zzy.logintest.domain.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @Data
+@TableName("post_video")
 public class PostVideo {
     private Long id;                    // 视频ID
     private Long postId;                // 关联的帖子ID
