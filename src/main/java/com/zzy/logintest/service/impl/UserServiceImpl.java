@@ -1,9 +1,9 @@
 package com.zzy.logintest.service.impl;
 
 import com.zzy.logintest.domain.dto.RegisterRequest;
-
 import com.zzy.logintest.domain.pojo.User;
 import com.zzy.logintest.domain.vo.ApiResponse;
+import com.zzy.logintest.domain.vo.UserVo;
 
 import com.zzy.logintest.mapper.UserMapper;
 import com.zzy.logintest.service.UserService;
@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -87,5 +89,39 @@ public class UserServiceImpl implements UserService {
         return ApiResponse.error("登录失败，请稍后重试");
     }
 }
+
+    /**
+     * 根据用户名模糊搜索用户
+     * @param username 用户名关键词
+     * @param page 页码
+     * @param size 每页大小
+     * @return 用户列表
+     */
+    @Override
+    public List<UserVo> searchUsers(String username, int page, int size) {
+        // 参数校验
+        if (username == null || username.trim().isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        // 计算偏移量
+        int offset = (page - 1) * size;
+
+        // 搜索用户
+        List<User> users = userMapper.searchUsersByUsername(username.trim(), offset, size);
+
+        // 转换为UserVo
+        List<UserVo> userVos = new ArrayList<>();
+        for (User user : users) {
+            UserVo userVo = new UserVo();
+            userVo.setId(String.valueOf(user.getId())); // 转换成字符串类型 防止bigint 类型在前端溢出
+            userVo.setUserName(user.getUsername());
+            userVo.setUserAvatar(user.getUserAvatar());
+            userVo.setEmail(user.getEmail());
+            userVos.add(userVo);
+        }
+
+        return userVos;
+    }
 
 }

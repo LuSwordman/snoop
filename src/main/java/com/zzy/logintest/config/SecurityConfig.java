@@ -38,7 +38,8 @@ public class SecurityConfig {
                     "/api/login",
                     "/api/register",
                     "/api/send-verification-code",
-                    "/api/reset-password"
+                    "/api/reset-password",
+                        "/ws/**" //放行ws请求
                 ).permitAll()
                 .anyRequest().authenticated()
             );

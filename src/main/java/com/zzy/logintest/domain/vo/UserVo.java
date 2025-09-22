@@ -7,4 +7,6 @@ public class UserVo {
     private String id;
     private String userName;
     private String userAvatar;
+    //邮箱
+    private String email;
 }

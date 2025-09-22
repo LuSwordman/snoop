@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
  * 发送验证码和重置密码
  */
 @RestController
-
 @CrossOrigin
 @Slf4j
 public class EmailController {

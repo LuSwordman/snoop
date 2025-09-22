@@ -11,7 +11,7 @@ import java.security.Key;
 import java.util.Date;
 
 @Component
-public class JwtUtil {
+public  class JwtUtil {
 
      // 过期时间
     private static final long EXPIRATION_TIME = 24 * 60 * 60 * 1000;
@@ -36,7 +36,7 @@ public class JwtUtil {
                 .compact();
     }
 
-    public String getEmailFromToken(String token) {
+    public static String getEmailFromToken(String token) {
         try {
             Claims claims = Jwts.parserBuilder()
                     .setSigningKey(key)

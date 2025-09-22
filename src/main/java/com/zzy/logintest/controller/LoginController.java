@@ -27,7 +27,6 @@ public class LoginController {
     @PostMapping("/login")
     public ApiResponse login(@Valid @RequestBody LoginRequest request) {
         System.out.println(request.toString());
-
         return  userService.authenticate(request.getEmail(), request.getPassword());
     }
 

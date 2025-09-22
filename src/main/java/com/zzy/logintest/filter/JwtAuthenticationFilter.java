@@ -27,12 +27,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
         throws ServletException, IOException {
-
+     if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+        filterChain.doFilter(request, response);
+        return;
+    }
     String path = request.getRequestURI();
     System.out.println("JwtAuthenticationFilter - Processing request for path: " + path);
 
-    // 跳过登录、注册等不需要认证的接口
-    if (path.equals("/api/login") || path.equals("/api/register")) {
+    // 跳过登录、注册等不需要认证的接口，以及WebSocket连接
+    if (path.equals("/api/login") || path.equals("/api/register") || path.startsWith("/ws/")) {
         filterChain.doFilter(request, response);
         return;
     }

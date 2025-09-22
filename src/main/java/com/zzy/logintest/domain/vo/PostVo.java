@@ -25,4 +25,7 @@ public class PostVo {
     private List<PostImage> images;
     // 关联的视频列表
     private PostVideo video;
+
+    //是否点赞
+    private Boolean isLike;
 }
